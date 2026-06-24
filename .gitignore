@@ -1,0 +1,49 @@
+# --- Dependencies ---
+node_modules/
+.pnp
+.pnp.js
+
+# --- Frontend build output ---
+dist/
+dist-ssr/
+*.local
+
+# --- Rust / Cargo ---
+src-tauri/target/
+**/*.rs.bk
+
+# --- Tauri generated ---
+src-tauri/gen/
+
+# --- Environment & secrets (NEVER commit) ---
+.env
+.env.*
+!.env.example
+secrets.json
+
+# --- diem local user data (NEVER commit — this is private, on-device data) ---
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+diem.key
+diem.key.dpapi
+*.diem-backup
+
+# --- Logs ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Machine-specific shortcuts (embed absolute local paths) ---
+*.lnk
+
+# --- Editors / OS ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

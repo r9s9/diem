@@ -1,0 +1,53 @@
+[package]
+name = "diem"
+version = "0.1.0"
+description = "Private, on-device work-activity tracker and AI timesheet assistant"
+authors = ["diem"]
+edition = "2021"
+rust-version = "1.77"
+
+# The Tauri app logic lives in a library so it can be shared (and unit-tested);
+# main.rs is a thin launcher. Convention: lib name is `<pkg>_lib`.
+[lib]
+name = "diem_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+tauri-plugin-single-instance = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-notification = "2"
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+thiserror = "2"
+chrono = { version = "0.4", features = ["clock", "std"] }
+uuid = { version = "1", features = ["v4"] }
+
+# Encrypted local DB: rusqlite with bundled SQLCipher (vendored OpenSSL so nothing
+# needs to be preinstalled on the host beyond Perl+NASM at build time).
+rusqlite = { version = "0.40.1", features = ["bundled-sqlcipher-vendored-openssl"] }
+rusqlite_migration = "2.5.0"
+getrandom = "0.3"
+zeroize = "1.8"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.62", features = [
+    "Win32_Foundation",
+    "Win32_Security_Cryptography",
+    "Win32_System_Threading",
+    "Win32_System_SystemInformation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Input_KeyboardAndMouse",
+] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

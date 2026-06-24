@@ -1,0 +1,12 @@
+{
+  "$comment": "Copy to diem.config.json and fill in. Used by the Microsoft Graph calendar integration. Register a PUBLIC client app in Entra ID (Azure AD): platform = Mobile and desktop, redirect URI = http://localhost, and enable 'Allow public client flows'. Only delegated, user-consentable scopes are used (no admin consent required).",
+  "graph": {
+    "clientId": "00000000-0000-0000-0000-000000000000",
+    "tenant": "common",
+    "scopes": [
+      "https://graph.microsoft.com/Calendars.Read",
+      "https://graph.microsoft.com/User.Read",
+      "offline_access"
+    ]
+  }
+}

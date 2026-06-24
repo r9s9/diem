@@ -1,0 +1,71 @@
+{
+  "$comment": "Default categories and built-in categorization rules. On first run the Rust seeder assigns a UUID + device_id + timestamps to each category, then resolves rule `category` slugs to those ids. Rules are evaluated by ascending `priority` (lower first); the first match wins. match_type: 'process' matches the lowercased exe base name; 'domain' matches the registrable domain (eTLD+1); 'title_regex' matches the window title.",
+  "categories": [
+    { "slug": "development",  "name": "Development",        "color": "#6366F1", "icon": "code",     "is_billable": 1, "is_idle": 0, "sort_order": 10 },
+    { "slug": "meetings",     "name": "Meetings",           "color": "#0EA5E9", "icon": "video",    "is_billable": 1, "is_idle": 0, "sort_order": 20 },
+    { "slug": "email-comms",  "name": "Email & Comms",      "color": "#10B981", "icon": "mail",     "is_billable": 1, "is_idle": 0, "sort_order": 30 },
+    { "slug": "documents",    "name": "Documents & Writing","color": "#F59E0B", "icon": "file",     "is_billable": 1, "is_idle": 0, "sort_order": 40 },
+    { "slug": "research",     "name": "Research & Browsing","color": "#8B5CF6", "icon": "globe",    "is_billable": 1, "is_idle": 0, "sort_order": 50 },
+    { "slug": "design",       "name": "Design",             "color": "#EC4899", "icon": "palette",  "is_billable": 1, "is_idle": 0, "sort_order": 60 },
+    { "slug": "planning",     "name": "Planning & PM",      "color": "#14B8A6", "icon": "kanban",   "is_billable": 1, "is_idle": 0, "sort_order": 70 },
+    { "slug": "breaks-idle",  "name": "Breaks & Idle",      "color": "#94A3B8", "icon": "coffee",   "is_billable": 0, "is_idle": 1, "sort_order": 80 },
+    { "slug": "uncategorized","name": "Uncategorized",      "color": "#64748B", "icon": "help",     "is_billable": 1, "is_idle": 0, "sort_order": 99 }
+  ],
+  "rules": [
+    { "match_type": "domain",  "pattern": "github.com",            "category": "development", "priority": 10 },
+    { "match_type": "domain",  "pattern": "gitlab.com",            "category": "development", "priority": 10 },
+    { "match_type": "domain",  "pattern": "bitbucket.org",         "category": "development", "priority": 10 },
+    { "match_type": "domain",  "pattern": "stackoverflow.com",     "category": "development", "priority": 10 },
+    { "match_type": "domain",  "pattern": "npmjs.com",             "category": "development", "priority": 10 },
+    { "match_type": "domain",  "pattern": "crates.io",             "category": "development", "priority": 10 },
+    { "match_type": "domain",  "pattern": "docs.rs",               "category": "development", "priority": 10 },
+
+    { "match_type": "domain",  "pattern": "teams.microsoft.com",   "category": "meetings",    "priority": 10 },
+    { "match_type": "domain",  "pattern": "zoom.us",               "category": "meetings",    "priority": 10 },
+    { "match_type": "domain",  "pattern": "meet.google.com",       "category": "meetings",    "priority": 10 },
+
+    { "match_type": "domain",  "pattern": "outlook.office.com",    "category": "email-comms", "priority": 10 },
+    { "match_type": "domain",  "pattern": "outlook.office365.com", "category": "email-comms", "priority": 10 },
+    { "match_type": "domain",  "pattern": "mail.google.com",       "category": "email-comms", "priority": 10 },
+    { "match_type": "domain",  "pattern": "slack.com",             "category": "email-comms", "priority": 10 },
+
+    { "match_type": "domain",  "pattern": "docs.google.com",       "category": "documents",   "priority": 10 },
+    { "match_type": "domain",  "pattern": "office.com",            "category": "documents",   "priority": 10 },
+    { "match_type": "domain",  "pattern": "notion.so",             "category": "planning",    "priority": 10 },
+    { "match_type": "domain",  "pattern": "atlassian.net",         "category": "planning",    "priority": 10 },
+    { "match_type": "domain",  "pattern": "linear.app",            "category": "planning",    "priority": 10 },
+    { "match_type": "domain",  "pattern": "asana.com",             "category": "planning",    "priority": 10 },
+    { "match_type": "domain",  "pattern": "trello.com",            "category": "planning",    "priority": 10 },
+
+    { "match_type": "domain",  "pattern": "figma.com",             "category": "design",      "priority": 10 },
+
+    { "match_type": "process", "pattern": "code.exe",              "category": "development", "priority": 20 },
+    { "match_type": "process", "pattern": "devenv.exe",            "category": "development", "priority": 20 },
+    { "match_type": "process", "pattern": "idea64.exe",            "category": "development", "priority": 20 },
+    { "match_type": "process", "pattern": "pycharm64.exe",         "category": "development", "priority": 20 },
+    { "match_type": "process", "pattern": "rustrover64.exe",       "category": "development", "priority": 20 },
+    { "match_type": "process", "pattern": "windowsterminal.exe",   "category": "development", "priority": 20 },
+    { "match_type": "process", "pattern": "powershell.exe",        "category": "development", "priority": 20 },
+    { "match_type": "process", "pattern": "pwsh.exe",              "category": "development", "priority": 20 },
+    { "match_type": "process", "pattern": "cmd.exe",               "category": "development", "priority": 20 },
+
+    { "match_type": "process", "pattern": "teams.exe",             "category": "meetings",    "priority": 20 },
+    { "match_type": "process", "pattern": "ms-teams.exe",          "category": "meetings",    "priority": 20 },
+
+    { "match_type": "process", "pattern": "outlook.exe",           "category": "email-comms", "priority": 20 },
+    { "match_type": "process", "pattern": "slack.exe",             "category": "email-comms", "priority": 20 },
+
+    { "match_type": "process", "pattern": "winword.exe",           "category": "documents",   "priority": 20 },
+    { "match_type": "process", "pattern": "excel.exe",             "category": "documents",   "priority": 20 },
+    { "match_type": "process", "pattern": "powerpnt.exe",          "category": "documents",   "priority": 20 },
+    { "match_type": "process", "pattern": "acrobat.exe",           "category": "documents",   "priority": 20 },
+    { "match_type": "process", "pattern": "acrord32.exe",          "category": "documents",   "priority": 20 },
+    { "match_type": "process", "pattern": "onenote.exe",           "category": "documents",   "priority": 20 },
+
+    { "match_type": "process", "pattern": "figma.exe",             "category": "design",      "priority": 20 },
+
+    { "match_type": "process", "pattern": "chrome.exe",            "category": "research",    "priority": 90 },
+    { "match_type": "process", "pattern": "msedge.exe",            "category": "research",    "priority": 90 },
+    { "match_type": "process", "pattern": "firefox.exe",           "category": "research",    "priority": 90 }
+  ]
+}
