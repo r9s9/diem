@@ -92,4 +92,4 @@ pwsh scripts\build.ps1   # release installer in src-tauri\target\release\bundle
 
 ## License
 
-Proprietary — internal company tool. © 2026.
+MIT.
